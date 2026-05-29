@@ -1,0 +1,86 @@
+<project version="4">
+  <component name="ExternalSystemProjectTracker"><![CDATA[{
+  "projectData": {
+    "GRADLE": {
+      "C:/Users/OS/it201-miniproject-session03": {
+        "settingsTracker": {
+          "isDirty": false,
+          "settingsFiles": {
+            "C:/Users/OS/it201-miniproject-session03/gradle/wrapper/gradle-wrapper.properties": 487388493,
+            "C:/Users/OS/it201-miniproject-session03/build.gradle": 2521237369,
+            "C:/Users/OS/it201-miniproject-session03/settings.gradle": 615544332
+          }
+        }
+      }
+    }
+  }
+}]]></component>
+  <component name="GradleLocalSettings">
+    <option name="myGradleHomes">
+      <map>
+        <entry key="$PROJECT_DIR$" value="C:\Users\OS\.gradle\wrapper\dists\gradle-8.8-bin\dl7vupf4psengwqhwktix4v1\gradle-8.8" />
+      </map>
+    </option>
+    <option name="myGradleVersions">
+      <map>
+        <entry key="$PROJECT_DIR$" value="8.8" />
+      </map>
+    </option>
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="demo" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="demo" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProcessedFilesStorage">
+    <timestamps>
+      <entry key="ac49913ae7b25be3bb12c158be31bf6f" value="1775528902065" />
+    </timestamps>
+  </component>
+  <component name="RestoreUpdateTree"><![CDATA[{}]]></component>
+  <component name="sourceFolderManager">
+    <sourceFolders>
+      <SourceFolderModelState>
+        <option name="moduleName" value="demo.main" />
+        <option name="type" value="RESOURCE" />
+        <option name="url" value="file://$PROJECT_DIR$/src/main/resources" />
+      </SourceFolderModelState>
+      <SourceFolderModelState>
+        <option name="moduleName" value="demo.test" />
+        <option name="type" value="TEST_SOURCE" />
+        <option name="url" value="file://$PROJECT_DIR$/src/test/java" />
+      </SourceFolderModelState>
+      <SourceFolderModelState>
+        <option name="moduleName" value="demo.test" />
+        <option name="type" value="TEST_RESOURCE" />
+        <option name="url" value="file://$PROJECT_DIR$/src/test/resources" />
+      </SourceFolderModelState>
+    </sourceFolders>
+  </component>
+</project>

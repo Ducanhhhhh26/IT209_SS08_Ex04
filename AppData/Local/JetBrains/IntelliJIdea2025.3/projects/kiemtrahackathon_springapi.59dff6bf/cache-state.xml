@@ -1,0 +1,169 @@
+<project version="4">
+  <component name="ExternalSystemProjectTracker"><![CDATA[{
+  "projectData": {
+    "GRADLE": {
+      "C:/Users/OS/Downloads/KiemTraHackathon_SpringAPI/KiemTraHackathon_SpringAPI": {
+        "settingsTracker": {
+          "isDirty": false,
+          "settingsFiles": {
+            "C:/Users/OS/Downloads/KiemTraHackathon_SpringAPI/KiemTraHackathon_SpringAPI/gradle/wrapper/gradle-wrapper.properties": 3326124944,
+            "C:/Users/OS/Downloads/KiemTraHackathon_SpringAPI/KiemTraHackathon_SpringAPI/build.gradle": 377030728,
+            "C:/Users/OS/Downloads/KiemTraHackathon_SpringAPI/KiemTraHackathon_SpringAPI/settings.gradle": 680671043
+          }
+        }
+      }
+    }
+  }
+}]]></component>
+  <component name="GradleLocalSettings">
+    <option name="myGradleHomes">
+      <map>
+        <entry key="$PROJECT_DIR$" value="C:\Users\OS\.gradle\wrapper\dists\gradle-9.4.1-bin\arn2x92ynaizyzdaamcbpbhtj\gradle-9.4.1" />
+      </map>
+    </option>
+    <option name="myGradleVersions">
+      <map>
+        <entry key="$PROJECT_DIR$" value="9.4.1" />
+      </map>
+    </option>
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="KiemTraHackathon_SpringAPI" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="KiemTraHackathon_SpringAPI" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LibraryUsageStatistics">
+    <statistics>
+      <entry value="2">
+        <LibraryUsage>
+          <option name="fileTypeName" value="JAVA" />
+          <option name="name" value="junit5" />
+          <option name="version" value="6.0.3" />
+        </LibraryUsage>
+      </entry>
+      <entry value="2">
+        <LibraryUsage>
+          <option name="fileTypeName" value="JAVA" />
+          <option name="name" value="spring-boot" />
+          <option name="version" value="4.0.6" />
+        </LibraryUsage>
+      </entry>
+      <entry value="1">
+        <LibraryUsage>
+          <option name="fileTypeName" value="JAVA" />
+          <option name="name" value="mockito" />
+          <option name="version" value="5.20.0" />
+        </LibraryUsage>
+      </entry>
+      <entry value="1">
+        <LibraryUsage>
+          <option name="fileTypeName" value="JAVA" />
+          <option name="name" value="lombok" />
+          <option name="version" value="1.18.46" />
+        </LibraryUsage>
+      </entry>
+      <entry value="1">
+        <LibraryUsage>
+          <option name="fileTypeName" value="JAVA" />
+          <option name="name" value="jakarta-validation" />
+          <option name="version" value="3.0.2" />
+        </LibraryUsage>
+      </entry>
+    </statistics>
+  </component>
+  <component name="ProcessedFilesStorage">
+    <timestamps>
+      <entry key="3840cccd0d896c215cfe02a9c92432db" value="1779953905167" />
+      <entry key="447a902fcecc38aa4402a0ed1cb2dfb5" value="1779954410673" />
+      <entry key="5d08b5775462616d41be0693c64040ec" value="1779953361702" />
+      <entry key="6666cd76f96956469e7be39d750cc7d9" value="1779954655095" />
+      <entry key="6ad78185a2c4b636550e0cd88dbe8954" value="1779953985519" />
+      <entry key="6f6fe5b43445f5189bd1ff40d411348b" value="1779954597358" />
+      <entry key="7816fb258d9791a3d91680f7652b4d60" value="1779954734694" />
+      <entry key="87c33c35963926709ee3acccfb457ccf" value="1779953626765" />
+      <entry key="934b3bf8d68c05be01bb4a2cd3f1fe2b" value="1779953099398" />
+      <entry key="9d9409a16c8ec3adf37bfb926a945e86" value="1779953247593" />
+      <entry key="a02226ff9c0d09b37a3da211f0eec1fc" value="1779954734693" />
+      <entry key="ba4cadf9db700cfcdc1e4c3863e1cb42" value="1779953201271" />
+      <entry key="c6e668a004438bed78350f5ad2c8432d" value="1779953202637" />
+      <entry key="ccc907946e08582f2158d8fb4676bd10" value="1779953058681" />
+      <entry key="d7d269e020441be8d7a3d1728bf7372e" value="1779953363262" />
+      <entry key="ded6ee95747cb45c38a3b170b36c35ac" value="1779953750947" />
+      <entry key="f1dbcce9990d1f30d3250199b1c6df9a" value="1779953730706" />
+      <entry key="f2cb4eae936fad38ed84ec29c2b3d031" value="1779954396615" />
+      <entry key="f3fd40f52e7c5717902a784140042a88" value="1779953830298" />
+    </timestamps>
+  </component>
+  <component name="Project">
+    <option name="lastProjectScan" value="1779953251" />
+  </component>
+  <component name="RestoreUpdateTree"><![CDATA[{}]]></component>
+  <component name="StoredSessionsInfoStore">
+    <option name="sessions">
+      <list>
+        <SessionInfoState>
+          <option name="id" value="20260528-143150-f2691a2a-fad6-451c-9f99-da6cb8e140ee" />
+          <option name="lastUpdateTimestamp" value="1779954537035" />
+          <option name="responseMode" value="Agent" />
+          <option name="title" value="Đọc FILE SRS.Md và thực hiện các yêu cầu cho tôi với" />
+          <option name="user" value="ducanhcualo2403@gmail.com" />
+        </SessionInfoState>
+        <SessionInfoState>
+          <option name="id" value="20260528-143520-e8732fa4-759b-4903-aa03-9c7d9b5ab9ac" />
+          <option name="lastUpdateTimestamp" value="1779953720149" />
+          <option name="responseMode" value="Chat" />
+          <option name="title" value="New Chat Session" />
+          <option name="user" value="ducanhcualo2403@gmail.com" />
+        </SessionInfoState>
+      </list>
+    </option>
+  </component>
+  <component name="github-copilot-input-history">
+    <inputEntries>
+      <PersistedInputEntry>
+        <option name="query" value="Execution failed for task ':compileJava'.&#13;&#10;&gt; Could not resolve all files for configuration ':compileClasspath'.&#13;&#10;   &gt; Could not find org.springframework.boot:spring-boot-starter-webmvc:.&#13;&#10;     Required by:&#13;&#10;         root project 'KiemTraHackathon_SpringAPI'&#13;&#10;&#13;&#10;Possible solution:&#13;&#10; - Declare repository providing the artifact, see the documentation at https://docs.gradle.org/current/userguide/declaring_repositories.html&#13;&#10;lỗi này sửa như napf" />
+      </PersistedInputEntry>
+      <PersistedInputEntry>
+        <option name="query" value="giờ tôi phải làm như nào" />
+      </PersistedInputEntry>
+      <PersistedInputEntry>
+        <option name="query" value="Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.&#13;&#10;[14:54:18.405] [ERROR] [o.s.boot.SpringApplication] - Application run failed" />
+      </PersistedInputEntry>
+    </inputEntries>
+  </component>
+  <component name="sourceFolderManager">
+    <sourceFolders>
+      <SourceFolderModelState>
+        <option name="moduleName" value="KiemTraHackathon_SpringAPI.test" />
+        <option name="type" value="TEST_RESOURCE" />
+        <option name="url" value="file://$PROJECT_DIR$/src/test/resources" />
+      </SourceFolderModelState>
+    </sourceFolders>
+  </component>
+</project>
