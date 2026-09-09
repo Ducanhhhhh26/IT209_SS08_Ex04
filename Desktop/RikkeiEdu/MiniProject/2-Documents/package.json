@@ -1,0 +1,9 @@
+{
+  "name": "srs-converter",
+  "version": "1.0.0",
+  "description": "Convert Markdown SRS to Word .doc with embedded Mermaid diagrams",
+  "main": "convert.js",
+  "dependencies": {
+    "marked": "^4.3.0"
+  }
+}

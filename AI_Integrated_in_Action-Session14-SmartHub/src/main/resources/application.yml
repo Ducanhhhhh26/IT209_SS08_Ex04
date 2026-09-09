@@ -1,0 +1,37 @@
+server:
+    port: 8080
+
+spring:
+    main:
+        banner-mode: "off"
+    application:
+        name: smart_hub
+    ai:
+        openai:
+            api-key: ${OPENAI_API_KEY}
+            base-url: ${OPENAI_BASE_URL:https://openrouter.ai/api/v1}
+            chat:
+                model: ${OPENAI_CHAT_MODEL:openrouter/free}
+                temperature: 0.3
+            embedding:
+                model: ${OPENAI_EMBEDDING_MODEL:text-embedding-3-small}
+
+        vectorstore:
+            pgvector:
+                dimensions: 1536
+                initialize-schema: true
+                index-type: hnsw
+                distance-type: cosine-distance
+
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: ${DB_URL}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect

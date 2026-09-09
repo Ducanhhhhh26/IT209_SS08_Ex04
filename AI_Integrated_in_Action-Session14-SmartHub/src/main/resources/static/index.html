@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHub — AI-Powered Smart Logistics Operations Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root {
+            --bg-base: #0a0d14;
+            --bg-card: rgba(18, 24, 38, 0.75);
+            --bg-card-hover: rgba(28, 38, 58, 0.85);
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.4);
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-active: rgba(59, 130, 246, 0.5);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.12) 0%, transparent 40%);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(10, 13, 20, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .brand-title {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-tag {
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.35rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-weight: 500;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 0.85rem;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .badge {
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+
+        .badge-blue { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .badge-green { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .badge-amber { background: rgba(245, 158, 11, 0.2); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.4); }
+        .badge-purple { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            background: rgba(10, 13, 20, 0.7);
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-family: var(--font-main);
+            padding: 0.85rem;
+            font-size: 0.9rem;
+            transition: border 0.2s ease;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), #2563eb);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px var(--primary-glow);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: none;
+        }
+
+        .quick-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .chip {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glass);
+            padding: 0.4rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chip:hover {
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .response-box {
+            background: rgba(10, 13, 20, 0.85);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 1.25rem;
+            min-height: 180px;
+            max-height: 480px;
+            overflow-y: auto;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .sources-list {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .source-item {
+            background: rgba(59, 130, 246, 0.06);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 0.65rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+
+        .source-title {
+            font-weight: 600;
+            color: #93c5fd;
+            margin-bottom: 0.2rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 0.75rem 0.85rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .stat-val {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            font-family: var(--font-mono);
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .markdown-output {
+            line-height: 1.65;
+        }
+
+        .markdown-output h1, .markdown-output h2, .markdown-output h3 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #93c5fd;
+        }
+
+        .markdown-output ul, .markdown-output ol {
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .markdown-output table {
+            margin: 1rem 0;
+        }
+
+        .markdown-output code {
+            font-family: var(--font-mono);
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.15rem 0.35rem;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="brand-icon"><i class="fa-solid fa-cube"></i></div>
+            <div>
+                <div class="brand-title">SmartHub Operations Center</div>
+                <div class="brand-tag">AI-POWERED LOGISTICS • PTIT K24 RESEARCH</div>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('rag')"><i class="fa-solid fa-book-open"></i> Module 1: RAG Q&A</button>
+            <button class="tab-btn" onclick="switchTab('agent')"><i class="fa-solid fa-robot"></i> Module 2: Agent Ops</button>
+            <button class="tab-btn" onclick="switchTab('mcp')"><i class="fa-solid fa-network-wired"></i> Module 3: MCP Analytics</button>
+            <button class="tab-btn" onclick="switchTab('observability')"><i class="fa-solid fa-chart-line"></i> Module 4: LLMOps Tracing</button>
+            <button class="tab-btn" onclick="switchTab('database')"><i class="fa-solid fa-database"></i> Live Database</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- MODULE 1: RAG Q&A -->
+        <div id="tab-rag" class="tab-content active">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fa-solid fa-search text-primary"></i> Tra Cứu Quy Chế Vận Chuyển</div>
+                        <span class="badge badge-blue">Pgvector Hybrid Search</span>
+                    </div>
+
+                    <div class="quick-chips">
+                        <div class="chip" onclick="setRagInput('Hàng hóa không bảo hiểm bị mất thì bồi thường bao nhiêu?')">Mất hàng không bảo hiểm</div>
+                        <div class="chip" onclick="setRagInput('Biểu phí hỏa tốc giữa Hà Nội và Đà Nẵng tính như thế nào?')">Biểu phí hỏa tốc HN - DN</div>
+                        <div class="chip" onclick="setRagInput('Quy cách đóng gói đồ thủy tinh dễ vỡ theo tiêu chuẩn RikkeiExpress?')">Đóng gói hàng dễ vỡ</div>
+                        <div class="chip" onclick="setRagInput('Hệ thống có nhận chuyển tiền mặt và vàng bạc không?')">Hàng cấm vận chuyển</div>
+                        <div class="chip" onclick="setRagInput('Thủ tục xin visa du lịch Nhật Bản như thế nào?')">Test Anti-Hallucination</div>
+                    </div>
+
+                    <textarea id="rag-question" rows="4" placeholder="Nhập câu hỏi tra cứu chính sách, bồi thường, biểu phí hoặc SLA cam kết..."></textarea>
+
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn" id="rag-btn" onclick="askRag()"><i class="fa-solid fa-paper-plane"></i> Tra Cứu Ngay</button>
+                        <button class="btn btn-secondary" onclick="ingestPolicy()"><i class="fa-solid fa-file-arrow-up"></i> Nạp Lại Tài Liệu (Ingest)</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fa-solid fa-sparkles text-accent-purple"></i> Kết Quả Tra Cứu & Trích Dẫn</div>
+                        <span id="rag-status-badge" class="badge badge-purple">Sẵn Sàng</span>
+                    </div>
+
+                    <div id="rag-output" class="response-box">
+                        <p style="color: var(--text-muted);">Kết quả trả lời kèm trích dẫn điều khoản quy chế sẽ xuất hiện tại đây...</p>
+                    </div>
+
+                    <div id="rag-sources" class="sources-list" style="display: none;">
+                        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted);"><i class="fa-solid fa-quote-left"></i> NGUỒN TÀI LIỆU TRÍCH DẪN (SOURCE DOCUMENTS):</div>
+                        <div id="sources-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 2: AGENT OPS -->
+        <div id="tab-agent" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fa-solid fa-headset text-accent-green"></i> Trợ Lý Điều Phối Sự Cố Tự Động</div>
+                        <span class="badge badge-green">Function Calling • Zero Crash</span>
+                    </div>
+
+                    <div class="quick-chips">
+                        <div class="chip" onclick="setAgentInput('Đơn RK-2026-001 của tôi gửi tuần trước bị ướt sũng hỏng đồ ở kho Hà Nội, đề nghị kiểm tra gấp')">Ướt hỏng RK-2026-001</div>
+                        <div class="chip" onclick="setAgentInput('Kiện hàng RK-2026-003 gửi vào Sài Gòn đã quá 3 ngày chưa nhận được, bị giao trễ quá lâu')">Giao trễ RK-2026-003</div>
+                        <div class="chip" onclick="setAgentInput('Đơn hàng RK-2026-999 bị mất đồ ở Đà Nẵng')">Mã đơn không tồn tại (Defensive)</div>
+                    </div>
+
+                    <textarea id="agent-message" rows="4" placeholder="Nhập phản ánh sự cố của khách hàng bằng ngôn ngữ tự nhiên..."></textarea>
+
+                    <button class="btn" id="agent-btn" onclick="sendAgentMessage()"><i class="fa-solid fa-bolt"></i> Xử Lý Sự Cố Tự Động</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fa-solid fa-gears text-accent-cyan"></i> Bóc Tách Thực Thể & Thực Thi Tool</div>
+                        <span id="agent-status-badge" class="badge badge-green">Chờ Xử Lý</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;" id="entities-panel">
+                        <div class="stat-card" style="padding: 0.75rem;">
+                            <div>
+                                <div class="stat-label">MÃ VẬN ĐƠN</div>
+                                <div class="stat-val" style="font-size: 0.95rem;" id="ent-code">-</div>
+                            </div>
+                        </div>
+                        <div class="stat-card" style="padding: 0.75rem;">
+                            <div>
+                                <div class="stat-label">LOẠI SỰ CỐ</div>
+                                <div class="stat-val" style="font-size: 0.95rem;" id="ent-type">-</div>
+                            </div>
+                        </div>
+                        <div class="stat-card" style="padding: 0.75rem;">
+                            <div>
+                                <div class="stat-label">BƯU CỤC</div>
+                                <div class="stat-val" style="font-size: 0.95rem;" id="ent-hub">-</div>
+                            </div>
+                        </div>
+                        <div class="stat-card" style="padding: 0.75rem;">
+                            <div>
+                                <div class="stat-label">MỨC ĐỘ</div>
+                                <div class="stat-val" style="font-size: 0.95rem;" id="ent-sev">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="agent-output" class="response-box">
+                        <p style="color: var(--text-muted);">Phản hồi giải quyết và nhật ký hành động tự động gọi Tool sẽ hiển thị tại đây...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 3: MCP ANALYTICS -->
+        <div id="tab-mcp" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fa-solid fa-shield-halved text-accent-amber"></i> Model Context Protocol & Safe SQL</div>
+                        <span class="badge badge-amber">Stdio Isolated • Safe SQL</span>
+                    </div>
+
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">Chọn Bưu Cục Đối Soát:</span>
+                        <button class="btn btn-secondary" onclick="loadHubReport('HN-01')">Hà Nội (HN-01)</button>
+                        <button class="btn btn-secondary" onclick="loadHubReport('SG-02')">Sài Gòn (SG-02)</button>
+                        <button class="btn btn-secondary" onclick="loadHubReport('DN-03')">Đà Nẵng (DN-03)</button>
+                    </div>
+
+                    <hr style="border-color: var(--border-glass);">
+
+                    <div style="font-weight: 600; font-size: 0.9rem;">Truy Vấn Ngôn Ngữ Tự Nhiên (MCP Text-to-SQL):</div>
+                    <div class="quick-chips">
+                        <div class="chip" onclick="setMcpInput('Thống kê số lượng đơn hàng theo từng trạng thái tại bưu cục HN-01')">Đơn hàng HN-01</div>
+                        <div class="chip" onclick="setMcpInput('Tổng số tiền thu hộ COD của các đơn đã giao thành công')">Tổng COD thành công</div>
+                        <div class="chip" onclick="setMcpInput('DROP TABLE deliveries')">Test Safe SQL Chặn DROP TABLE</div>
+                    </div>
+                    <textarea id="mcp-query" rows="3" placeholder="Nhập câu hỏi phân tích dữ liệu hoặc câu lệnh SQL kiểm thử..."></textarea>
+                    <button class="btn" id="mcp-btn" onclick="executeMcpQuery()"><i class="fa-solid fa-magnifying-glass-chart"></i> Phân Tích & Đối Soát</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fa-solid fa-file-lines text-primary"></i> Báo Cáo Đối Soát Markdown</div>
+                        <span id="mcp-status-badge" class="badge badge-amber">Kết Quả</span>
+                    </div>
+
+                    <div id="mcp-output" class="response-box markdown-output">
+                        <p style="color: var(--text-muted);">Báo cáo phân tích hiệu suất bưu cục hoặc kết quả kiểm duyệt SQL sẽ hiển thị tại đây...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 4: LLMOPS TRACING -->
+        <div id="tab-observability" class="tab-content">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem;" id="metrics-cards">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;"><i class="fa-solid fa-route"></i></div>
+                    <div>
+                        <div class="stat-val" id="stat-traces">0</div>
+                        <div class="stat-label">TỔNG TRACES ĐÃ GHI</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(139, 92, 246, 0.15); color: #c084fc;"><i class="fa-solid fa-coins"></i></div>
+                    <div>
+                        <div class="stat-val" id="stat-tokens">0</div>
+                        <div class="stat-label">TỔNG TOKEN TIÊU THỤ</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div>
+                        <div class="stat-val" id="stat-cost">$0.00</div>
+                        <div class="stat-label">ƯỚC TÍNH CHI PHÍ (USD)</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div>
+                        <div class="stat-val" id="stat-latency">0 ms</div>
+                        <div class="stat-label">ĐỘ TRỄ TRUNG BÌNH</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title"><i class="fa-solid fa-list-check text-accent-purple"></i> Nhật Ký Vết Chạy Phân Cấp (Trace & Span Hierarchy)</div>
+                    <button class="btn btn-secondary" onclick="loadObservability()"><i class="fa-solid fa-arrows-rotate"></i> Làm Mới</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Trace ID</th>
+                                <th>Phân Hệ</th>
+                                <th>Thao Tác</th>
+                                <th>Độ Trễ</th>
+                                <th>Tokens</th>
+                                <th>Chi Phí ($)</th>
+                                <th>Trạng Thái</th>
+                                <th>Thời Điểm</th>
+                            </tr>
+                        </thead>
+                        <tbody id="traces-table-body">
+                            <tr><td colspan="8" style="text-align: center; color: var(--text-muted);">Đang tải dữ liệu vết chạy...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- LIVE DATABASE TAB -->
+        <div id="tab-database" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fa-solid fa-boxes-stacked text-primary"></i> Bảng `deliveries` (Đơn Hàng)</div>
+                        <button class="btn btn-secondary" onclick="loadDatabaseData()"><i class="fa-solid fa-rotate"></i> Làm mới</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã Đơn</th>
+                                    <th>Khách Hàng</th>
+                                    <th>Kho</th>
+                                    <th>Trạng Thái</th>
+                                    <th>COD</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deliveries-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fa-solid fa-triangle-exclamation text-accent-rose"></i> Bảng `incidents` (Phiếu Sự Cố)</div>
+                        <button class="btn btn-secondary" onclick="loadDatabaseData()"><i class="fa-solid fa-rotate"></i> Làm mới</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã Đơn</th>
+                                    <th>Loại Sự Cố</th>
+                                    <th>Kho</th>
+                                    <th>Mức Độ</th>
+                                    <th>Trạng Thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="incidents-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            if (tabId === 'observability') loadObservability();
+            if (tabId === 'database') loadDatabaseData();
+        }
+
+        function setRagInput(text) {
+            document.getElementById('rag-question').value = text;
+        }
+
+        function setAgentInput(text) {
+            document.getElementById('agent-message').value = text;
+        }
+
+        function setMcpInput(text) {
+            document.getElementById('mcp-query').value = text;
+        }
+
+        // RAG Functions
+        async function askRag() {
+            const q = document.getElementById('rag-question').value.trim();
+            if (!q) return alert('Vui lòng nhập câu hỏi');
+
+            const btn = document.getElementById('rag-btn');
+            const out = document.getElementById('rag-output');
+            const srcDiv = document.getElementById('rag-sources');
+            const srcCont = document.getElementById('sources-container');
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Đang tra cứu...';
+            out.innerHTML = '<p style="color: var(--text-muted);">Đang truy xuất Pgvector và sinh câu trả lời...</p>';
+            srcDiv.style.display = 'none';
+
+            try {
+                const res = await fetch(`/api/v1/rag/ask?question=${encodeURIComponent(q)}`);
+                const data = await res.json();
+                out.innerHTML = marked.parse(data.answer);
+
+                if (data.sourceDocuments && data.sourceDocuments.length > 0) {
+                    srcCont.innerHTML = data.sourceDocuments.map(s => `
+                        <div class="source-item">
+                            <div class="source-title"><i class="fa-solid fa-file-lines"></i> ${s.documentName} — ${s.section}</div>
+                            <div style="color: var(--text-muted); font-size: 0.75rem;">${s.contentSnippet}</div>
+                        </div>
+                    `).join('');
+                    srcDiv.style.display = 'block';
+                }
+            } catch (err) {
+                out.innerHTML = `<p style="color: #f87171;">Lỗi kết nối: ${err.message}</p>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Tra Cứu Ngay';
+            }
+        }
+
+        async function ingestPolicy() {
+            try {
+                const res = await fetch('/api/v1/rag/ingest', { method: 'POST' });
+                const data = await res.json();
+                alert(`Nạp tài liệu thành công: ${data.totalChunks} đoạn văn bản đã được lưu vào Pgvector.`);
+            } catch (err) {
+                alert('Lỗi nạp tài liệu: ' + err.message);
+            }
+        }
+
+        // Agent Functions
+        async function sendAgentMessage() {
+            const msg = document.getElementById('agent-message').value.trim();
+            if (!msg) return alert('Vui lòng nhập phản ánh sự cố');
+
+            const btn = document.getElementById('agent-btn');
+            const out = document.getElementById('agent-output');
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Agent đang xử lý...';
+            out.innerHTML = '<p style="color: var(--text-muted);">AI Agent đang phân tích thực thể và gọi các Tools...</p>';
+
+            try {
+                const res = await fetch('/api/v1/operations/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                });
+                const data = await res.json();
+
+                // Update entities
+                if (data.extractedEntities) {
+                    document.getElementById('ent-code').innerText = data.extractedEntities.trackingCode || 'N/A';
+                    document.getElementById('ent-type').innerText = data.extractedEntities.incidentType || 'N/A';
+                    document.getElementById('ent-hub').innerText = data.extractedEntities.hubCode || 'N/A';
+                    document.getElementById('ent-sev').innerText = data.extractedEntities.severity || 'N/A';
+                }
+
+                let actionsHtml = '';
+                if (data.actionsExecuted && data.actionsExecuted.length > 0) {
+                    actionsHtml = `
+                        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 8px;">
+                            <div style="font-weight: 600; color: #6ee7b7; font-size: 0.8rem; margin-bottom: 0.35rem;"><i class="fa-solid fa-circle-check"></i> HÀNH ĐỘNG HỆ THỐNG ĐÃ THỰC THI (TOOLS):</div>
+                            <ul style="margin-left: 1.25rem; font-size: 0.8rem; color: #a7f3d0;">
+                                ${data.actionsExecuted.map(a => `<li>${a}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                out.innerHTML = marked.parse(data.agentResponse) + actionsHtml;
+                loadDatabaseData(); // refresh database
+            } catch (err) {
+                out.innerHTML = `<p style="color: #f87171;">Lỗi xử lý sự cố: ${err.message}</p>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Xử Lý Sự Cố Tự Động';
+            }
+        }
+
+        // MCP Analytics Functions
+        async function loadHubReport(hubCode) {
+            const out = document.getElementById('mcp-output');
+            out.innerHTML = '<p style="color: var(--text-muted);"><span class="spinner"></span> Đang xuất báo cáo bưu cục ' + hubCode + '...</p>';
+            try {
+                const res = await fetch(`/api/v1/analytics/hub-report?hubCode=${hubCode}`);
+                const data = await res.json();
+                out.innerHTML = marked.parse(data.reportMarkdown);
+            } catch (err) {
+                out.innerHTML = `<p style="color: #f87171;">Lỗi tải báo cáo: ${err.message}</p>`;
+            }
+        }
+
+        async function executeMcpQuery() {
+            const query = document.getElementById('mcp-query').value.trim();
+            if (!query) return alert('Vui lòng nhập câu hỏi hoặc câu lệnh SQL');
+
+            const out = document.getElementById('mcp-output');
+            const btn = document.getElementById('mcp-btn');
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Đang xử lý MCP...';
+            out.innerHTML = '<p style="color: var(--text-muted);">Đang thực thi giao thức MCP và kiểm duyệt Safe SQL...</p>';
+
+            try {
+                // If it starts with SELECT / DROP etc, test safe-sql directly, otherwise natural language
+                const isSql = /^(SELECT|DROP|DELETE|UPDATE|INSERT|ALTER|TRUNCATE)/i.test(query);
+                if (isSql) {
+                    const res = await fetch('/api/v1/analytics/safe-sql', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ sql: query })
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        out.innerHTML = `
+                            <div style="color: #34d399; font-weight: 700; margin-bottom: 0.5rem;"><i class="fa-solid fa-check"></i> Safe SQL Validator: Truy vấn hợp lệ</div>
+                            <pre style="background: rgba(0,0,0,0.5); padding: 0.75rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem;">${data.sanitizedQuery}</pre>
+                            <div style="margin-top: 0.75rem;"><strong>Kết quả:</strong> ${data.rowCount} bản ghi.</div>
+                            <pre style="background: rgba(0,0,0,0.3); padding: 0.5rem; margin-top: 0.5rem; max-height: 200px; overflow: auto; font-size: 0.75rem;">${JSON.stringify(data.data, null, 2)}</pre>
+                        `;
+                    } else {
+                        out.innerHTML = `
+                            <div style="color: #f87171; font-weight: 700; margin-bottom: 0.5rem;"><i class="fa-solid fa-ban"></i> Safe SQL Validator: Bị từ chối!</div>
+                            <div style="padding: 0.75rem; background: rgba(244,63,94,0.1); border: 1px solid rgba(244,63,94,0.3); border-radius: 8px; color: #fda4af;">
+                                ${data.error}
+                            </div>
+                        `;
+                    }
+                } else {
+                    const res = await fetch('/api/v1/analytics/query', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ query: query })
+                    });
+                    const data = await res.json();
+                    let sqlSection = `<div style="background: rgba(0,0,0,0.4); padding: 0.5rem 0.75rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; margin-bottom: 1rem; color: #93c5fd;">SQL Đã chạy: <code>${data.generatedSql}</code></div>`;
+                    out.innerHTML = sqlSection + marked.parse(data.markdownReport);
+                }
+            } catch (err) {
+                out.innerHTML = `<p style="color: #f87171;">Lỗi xử lý MCP: ${err.message}</p>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-magnifying-glass-chart"></i> Phân Tích & Đối Soát';
+            }
+        }
+
+        // Observability Functions
+        async function loadObservability() {
+            try {
+                const [tracesRes, summaryRes] = await Promise.all([
+                    fetch('/api/v1/observability/traces'),
+                    fetch('/api/v1/observability/summary')
+                ]);
+                const traces = await tracesRes.json();
+                const summary = await summaryRes.json();
+
+                document.getElementById('stat-traces').innerText = summary.totalTraces;
+                document.getElementById('stat-tokens').innerText = summary.totalTokens.toLocaleString();
+                document.getElementById('stat-cost').innerText = summary.formattedCostUsd;
+                document.getElementById('stat-latency').innerText = summary.avgLatencyMs + ' ms';
+
+                const tbody = document.getElementById('traces-table-body');
+                if (!traces || traces.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--text-muted);">Chưa có vết chạy nào được ghi lại. Hãy thử gọi RAG hoặc Agent!</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = traces.map(t => `
+                    <tr>
+                        <td><code style="color: #93c5fd;">#${t.traceId}</code></td>
+                        <td><span class="badge badge-purple">${t.module}</span></td>
+                        <td style="font-weight: 500;">${t.name}</td>
+                        <td>${t.latencyMs} ms</td>
+                        <td>${t.totalTokens}</td>
+                        <td style="color: #34d399;">$${t.estimatedCostUsd.toFixed(6)}</td>
+                        <td><span class="badge ${t.status === 'SUCCESS' ? 'badge-green' : 'badge-amber'}">${t.status}</span></td>
+                        <td style="color: var(--text-muted); font-size: 0.75rem;">${t.startTime.replace('T', ' ').substring(0, 19)}</td>
+                    </tr>
+                `).join('');
+            } catch (err) {
+                console.error('Error loading observability:', err);
+            }
+        }
+
+        // Database Functions
+        async function loadDatabaseData() {
+            try {
+                const [delRes, incRes] = await Promise.all([
+                    fetch('/api/v1/operations/deliveries'),
+                    fetch('/api/v1/operations/incidents')
+                ]);
+                const deliveries = await delRes.json();
+                const incidents = await incRes.json();
+
+                const delBody = document.getElementById('deliveries-table-body');
+                delBody.innerHTML = deliveries.map(d => {
+                    let badgeClass = 'badge-blue';
+                    if (d.status === 'DELIVERED') badgeClass = 'badge-green';
+                    if (d.status === 'DELAYED') badgeClass = 'badge-amber';
+                    if (d.status === 'DAMAGED') badgeClass = 'badge-rose';
+                    return `
+                        <tr>
+                            <td><code style="color: #93c5fd; font-weight: 700;">${d.trackingCode}</code></td>
+                            <td>${d.customerName}</td>
+                            <td><span class="badge badge-purple">${d.hubCode}</span></td>
+                            <td><span class="badge ${badgeClass}">${d.status}</span></td>
+                            <td>${Number(d.codAmount).toLocaleString()} đ</td>
+                        </tr>
+                    `;
+                }).join('');
+
+                const incBody = document.getElementById('incidents-table-body');
+                if (incidents.length === 0) {
+                    incBody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Không có sự cố nào trong CSDL</td></tr>';
+                } else {
+                    incBody.innerHTML = incidents.map(i => `
+                        <tr>
+                            <td><code style="color: #93c5fd;">${i.trackingCode}</code></td>
+                            <td><span class="badge badge-amber">${i.incidentType}</span></td>
+                            <td>${i.hubCode}</td>
+                            <td><strong style="color: ${i.severity === 'CRITICAL' ? '#f43f5e' : '#f59e0b'};">${i.severity}</strong></td>
+                            <td><span class="badge badge-green">${i.status}</span></td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (err) {
+                console.error('Error loading database data:', err);
+            }
+        }
+
+        // Initial Load
+        loadHubReport('HN-01');
+    </script>
+</body>
+</html>

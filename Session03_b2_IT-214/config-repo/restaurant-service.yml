@@ -1,0 +1,17 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: restaurant-service
+  datasource:
+    url: jdbc:mysql://foodx-cluster.local:3306/restaurants_db
+    username: restaurant_service_user
+    password: '{cipher}AQB4k1l9m0N8vX7zY3w2P1q0R9s8T7u6V5w4X3y2Z1a0B9c8D7e6F5g4H3i2J1k0L9m8N7o6P5q4R3s2T1u0V9w8X7y6Z5a4B3c2D1e0F9g8H7i6J5k4L3m2N1o0P9q8R7s6T5u4V3w2X1y0Z9a8B7c6D5e4F3g2'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect

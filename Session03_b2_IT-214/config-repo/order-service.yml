@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://foodx-cluster.local:3306/orders_db
+    username: order_service_user
+    password: '{cipher}AQC8x2m0n1O9wY8aZ4x3Q2r1S0t9U8v7W6x5Y4z3A2b1C0d9E8f7G6h5I4j3K2l1M0n9O8p7Q6r5S4t3U2v1W0x9Y8z7A6b5C4d3E2f1G0h9I8j7K6l5M4n3O2p1Q0r9S8t7U6v5W4x3Y2z1A0b9C8d7E6f5G4h3'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect

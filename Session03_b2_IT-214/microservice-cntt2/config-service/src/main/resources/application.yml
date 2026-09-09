@@ -1,0 +1,12 @@
+spring:
+    application:
+        name: config-service
+    cloud:
+        config:
+            server:
+                git:
+                    uri: https://github.com/haibtrikkei/HN_K24_CNTT2_Microservice_Session03_Config.git
+                    default-label: master
+server:
+    port: 8888
+

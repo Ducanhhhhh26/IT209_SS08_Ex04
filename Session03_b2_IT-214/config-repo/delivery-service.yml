@@ -1,0 +1,17 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: delivery-service
+  datasource:
+    url: jdbc:mysql://foodx-cluster.local:3306/delivery_db
+    username: delivery_service_user
+    password: '{cipher}AQD9y3n1o2P0xZ9bA5y4R3s2T1u0V9w8X7y6Z5a4B3c2D1e0F9g8H7i6J5k4L3m2N1o0P9q8R7s6T5u4V3w2X1y0Z9a8B7c6D5e4F3g2H1i0J9k8L7m6N5o4P3q2R1s0T9u8V7w6X5y4Z3a2B1c0D9e8F7g6H5i4'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
